@@ -1,98 +1,98 @@
+/* 編集画面全体 */
 .edit-products {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
-  .product-table {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .product-row {
-    background: #f9f9f9;
-    padding: 15px;
-    border: 1px solid #ddd;
-    width: 250px;
-    text-align: center;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  .product-name,
-  .product-description,
-  .product-price {
-    width: 100%;
-    padding: 8px;
-    margin: 5px 0;
-    font-size: 14px;
-  }
-  
-  .edit-button {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-    margin-bottom: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-  }
-  
-  .edit-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .new-product {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    width: 300px;
-    margin: 20px auto;
-  }
-  
-  .new-product input {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    font-size: 14px;
-  }
-  
-  .new-product button {
-    width: 100%;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .new-product button:hover {
-    background-color: #218838;
-  }
-  
-  button {
-    padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  /* 新規商品フォーム全体のスタイル */
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+/* ヘッダー */
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+}
+
+/* 商品行を表形式っぽく */
+.product-row {
+  padding: 15px;
+  border: 1px solid #ddd;
+  width: 100%;
+  text-align: left; /* 左寄せにして表形式に */
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: table; /* 表のようなレイアウトに */
+  width: 100%;
+}
+
+/* 商品情報を表示する各セル */
+.product-row .cell {
+  display: table-cell; /* セルとして表示 */
+  padding: 12px;
+  border-right: 1px solid #ddd;
+  vertical-align: middle; /* セルの内容を中央揃え */
+}
+
+/* 最後のセルの右側の境界線を消す */
+.product-row .cell:last-child {
+  border-right: none;
+}
+
+/* 商品名や価格を強調 */
+.product-row .cell.product-name {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+/* 新規商品追加フォーム */
+.new-product {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px; /* フォームの最大幅を設定 */
+  margin: 20px auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.new-product input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.new-product input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+.new-product button {
+  width: 100%;
+  padding: 12px 20px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-product button:hover {
+  background-color: #218838;
+}
+
+.new-product button:active {
+  background-color: #1e7e34;
+}
+
+/* 商品追加フォームのスタイル */
 .new-product-form {
   margin-top: 20px;
   padding: 20px;
@@ -101,7 +101,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 500px;
-  margin: 20px auto; /* センター配置 */
+  margin: 20px auto;
 }
 
 .new-product-form h3 {
@@ -114,7 +114,7 @@
 /* フォームの入力欄スタイル */
 .new-product-form input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -129,7 +129,7 @@
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
 }
 
-/* 商品追加ボタンのスタイル */
+/* 商品追加ボタン */
 .new-product-form button {
   background-color: #28a745;
   color: #fff;
@@ -154,19 +154,19 @@
   transform: scale(1); /* クリック時に戻す */
 }
 
-/* 全体の操作ボタンのスタイル */
+/* 操作ボタン全体のスタイル */
 .action-buttons {
   margin-top: 20px;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 15px;
 }
 
 .action-buttons button {
   background-color: #007bff;
   color: #fff;
   border: none;
-  padding: 10px 15px;
+  padding: 12px 18px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;

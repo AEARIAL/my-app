@@ -19,32 +19,36 @@
 
 /* 商品アイテムリスト */
 .cart-items {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  width: 100%;
+  margin-top: 20px;
 }
 
-/* 各商品アイテム */
-.cart-item {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 15px;
+/* 商品アイテムのテーブル */
+.cart-item-table {
+  width: 100%;
+  border-collapse: collapse;
   background-color: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  align-items: center;
-  gap: 15px;
 }
 
-/* 商品画像と名前の部分 */
-.cart-item-image-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 15px;
+/* テーブルのヘッダー */
+.cart-item-table th {
+  font-size: 1.1rem;
+  background-color: #f3f3f3;
+  padding: 10px;
+  text-align: left;
+  border-bottom: 2px solid #ddd;
 }
 
+/* テーブルのデータセル */
+.cart-item-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* 商品画像 */
 .cart-item-image {
   width: 80px;
   height: 80px;
@@ -54,36 +58,8 @@
   border-radius: 5px;
 }
 
-.cart-item-name {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #007185;
-  max-width: 300px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-/* 商品の価格と数量 */
-.cart-item-details {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.cart-item-price {
-  font-size: 1rem;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-.cart-item-quantity {
-  font-size: 0.9rem;
-  color: #666;
-}
-
 /* 削除ボタン */
-.cart-item-remove {
+.remove-button {
   background-color: #fff;
   border: 1px solid #ddd;
   color: #007185;
@@ -93,7 +69,7 @@
   font-size: 0.9rem;
 }
 
-.cart-item-remove:hover {
+.remove-button:hover {
   background-color: #f3f3f3;
   border-color: #c3c3c3;
 }
@@ -135,20 +111,18 @@
 
 /* レスポンシブ対応 */
 @media (max-width: 768px) {
-  .cart-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .cart-item-table {
+    width: 100%;
+    display: block;
   }
 
-  .cart-item-image-container {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+  .cart-item-table th, .cart-item-table td {
+    display: block;
+    text-align: left;
   }
 
-  .cart-item-name {
-    max-width: 100%;
+  .cart-item-table td {
+    padding: 8px;
   }
 
   .cart-total {

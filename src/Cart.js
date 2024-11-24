@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Cart.css'; // カートのスタイルを追加
 
 const Cart = ({ cartItems, setCartItems }) => {
@@ -10,6 +10,21 @@ const Cart = ({ cartItems, setCartItems }) => {
     (total, item) => total + item.price * item.quantity,
     0
   );
+
+  // カートの内容をローカルストレージに保存
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems)); // カートの内容を保存
+    }
+  }, [cartItems]);
+
+  // ページリロード後にカートの内容を復元
+  useEffect(() => {
+    const storedCartItems = JSON.parse(localStorage.getItem('cartItems'));
+    if (storedCartItems) {
+      setCartItems(storedCartItems); // ローカルストレージからカートの内容を読み込む
+    }
+  }, [setCartItems]);
 
   const handleItemClick = (item) => {
     setSelectedItem(item); // アイテムを選択
@@ -41,30 +56,26 @@ const Cart = ({ cartItems, setCartItems }) => {
         <p>カートにアイテムがありません。</p>
       ) : (
         <div className="cart-items">
-          <ul>
-            {cartItems.map((item) => (
-              <li key={item.id} className="cart-item">
-                {/* 商品画像と商品名 */}
-                <div className="cart-item-image-container">
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="cart-item-image"
-                    onClick={() => handleItemClick(item)} // 画像部分クリックで発火
-                  />
-                  <div
-                    className="cart-item-name"
-                    onClick={() => handleItemClick(item)} // 商品名部分クリックで発火
-                  >
-                    {item.name}
-                  </div>
-                </div>
-
-                {/* 単価と数量 */}
-                <div className="cart-item-pricing">
-                  <p>Cost: {item.price}</p>
-                  <div>
-                    数量:{' '}
+          <table className="cart-item-table">
+            <thead>
+              <tr>
+                <th>商品画像</th>
+                <th>商品名</th>
+                <th>価格</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th>削除</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cartItems.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <img src={item.image} alt={item.name} className="cart-item-image" />
+                  </td>
+                  <td>{item.name}</td>
+                  <td>{item.price}</td>
+                  <td>
                     <input
                       type="number"
                       min="1"
@@ -73,27 +84,23 @@ const Cart = ({ cartItems, setCartItems }) => {
                         handleQuantityChange(item.id, parseInt(e.target.value, 10))
                       }
                     />
-                  </div>
-                </div>
-
-                {/* 小計 */}
-                <div className="cart-item-subtotal">
-                  小計: {item.price * item.quantity}
-                </div>
-
-                {/* 削除ボタン */}
-                <button
-                  className="remove-button"
-                  onClick={(e) => {
-                    e.stopPropagation(); // 親のクリックイベントを防止
-                    handleRemoveItem(item.id);
-                  }}
-                >
-                  削除
-                </button>
-              </li>
-            ))}
-          </ul>
+                  </td>
+                  <td>{item.price * item.quantity}</td>
+                  <td>
+                    <button
+                      className="remove-button"
+                      onClick={(e) => {
+                        e.stopPropagation(); // 親のクリックイベントを防止
+                        handleRemoveItem(item.id);
+                      }}
+                    >
+                      削除
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
           <div className="cart-total">
             <h3>合計Cost: {totalAmount}</h3>
