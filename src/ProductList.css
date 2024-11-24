@@ -1,0 +1,173 @@
+/* 商品一覧 */
+.product-list {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;  /* 商品間の余白を少し小さめに */
+  margin-top: 20px;
+}
+
+.product-item {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-image {
+  width: 100px;  /* 画像サイズを100x100に */
+  height: 100px;  /* 画像サイズを100x100に */
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 15px;  /* 画像とテキストの間に余白を追加 */
+}
+
+.product-item h3 {
+  font-size: 16px;
+  color: #333;
+  margin: 10px 0;
+  line-height: 1.4;
+}
+
+.product-item p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 10px;  /* 価格やその他の情報に余白を追加 */
+}
+
+.product-item button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 12px 25px;  /* ボタンの大きさを調整 */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  width: 100%;  /* ボタンを横幅いっぱいにする */
+  margin-top: auto;  /* ボタンを下部に配置 */
+}
+
+.product-item button:hover {
+  background-color: #218838;
+  transform: translateY(-3px); /* 少し浮き上がるエフェクト */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ホバー時のシャドウ */
+}
+
+.product-item button:active {
+  transform: translateY(0); /* クリック時に戻す */
+  box-shadow: none; /* シャドウを消す */
+}
+
+/* 編集ボタンを右端に配置する */
+.product-row {
+  display: flex;
+  justify-content: space-between;  /* 左右に分ける */
+  align-items: center;  /* 縦方向の中央揃え */
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 10px;
+}
+
+.product-info input,
+.product-info span {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.product-row .edit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 6px 12px;  /* ボタンのパディングを小さく */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;  /* フォントサイズを小さく */
+  transition: background-color 0.3s ease;
+}
+
+.product-row .edit-button:hover {
+  background-color: #0056b3;
+}
+
+.product-row .edit-button:active {
+  background-color: #004085;
+}
+
+/* 新規商品追加フォーム */
+.new-product {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.new-product input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.new-product button {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.new-product button:hover {
+  background-color: #218838;
+}
+
+.new-product button:active {
+  background-color: #1e7e34;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);  /* スマホ向けに2列に変更 */
+  }
+
+  .product-item {
+    padding: 10px;
+  }
+
+  .product-info {
+    gap: 5px;
+  }
+
+  .new-product input,
+  .new-product button {
+    padding: 8px;
+    font-size: 14px;
+  }
+}
