@@ -49,10 +49,11 @@ const App = () => {
       {/* タブ内容 */}
       <div className="tab-content">
         {activeTab === 'products' && <ProductList addToCart={addToCart} />}
-        {activeTab === 'cart' && <Cart cartItems={cartItems} />}
+        {activeTab === 'cart' && <Cart cartItems={cartItems}  setCartItems={setCartItems} />}
         {activeTab === 'edit' && <EditProducts />}  {/* 編集画面を表示 */}
       </div>
     </div>
+    
   );
 };
 

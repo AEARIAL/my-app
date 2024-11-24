@@ -20,10 +20,17 @@ const Cart = ({ cartItems, setCartItems }) => {
     setShowPopup(false); // ポップアップを閉じる
   };
 
+  const handleQuantityChange = (itemId, newQuantity) => {
+    if (newQuantity < 1) return; // 0以下の数量を無効化
+    const updatedItems = cartItems.map((item) =>
+      item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+    setCartItems(updatedItems);
+  };
+
   const handleRemoveItem = (itemId) => {
-    // 指定されたIDの商品を削除
-    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
-    setCartItems(updatedCartItems); // カートアイテムを更新
+    const updatedItems = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedItems);
   };
 
   return (
@@ -36,21 +43,37 @@ const Cart = ({ cartItems, setCartItems }) => {
         <div className="cart-items">
           <ul>
             {cartItems.map((item) => (
-              <li
-                key={item.id}
-                className="cart-item"
-                onClick={() => handleItemClick(item)}
-              >
+              <li key={item.id} className="cart-item">
                 {/* 商品画像と商品名 */}
                 <div className="cart-item-image-container">
-                  <img src={item.image} alt={item.name} className="cart-item-image" />
-                  <div className="cart-item-name">{item.name}</div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="cart-item-image"
+                    onClick={() => handleItemClick(item)} // 画像部分クリックで発火
+                  />
+                  <div
+                    className="cart-item-name"
+                    onClick={() => handleItemClick(item)} // 商品名部分クリックで発火
+                  >
+                    {item.name}
+                  </div>
                 </div>
 
                 {/* 単価と数量 */}
                 <div className="cart-item-pricing">
                   <p>Cost: {item.price}</p>
-                  <p>数量: {item.quantity}</p>
+                  <div>
+                    数量:{' '}
+                    <input
+                      type="number"
+                      min="1"
+                      value={item.quantity}
+                      onChange={(e) =>
+                        handleQuantityChange(item.id, parseInt(e.target.value, 10))
+                      }
+                    />
+                  </div>
                 </div>
 
                 {/* 小計 */}
