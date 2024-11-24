@@ -13,12 +13,12 @@ const ProductList = ({ addToCart }) => {
     const fetchData = async () => {
       try {
         // 商品名のCSV読み込み
-        const itemNameResponse = await fetch('/items/ItemName.csv');
+        const itemNameResponse = await fetch('https://aearial.github.io/my-app/items/ItemName.csv');
         const itemNameText = await itemNameResponse.text();
         const itemNameData = Papa.parse(itemNameText, { header: false }).data;
 
         // 商品説明のCSV読み込み
-        const itemFlavResponse = await fetch('/items/ItemFlav.csv');
+        const itemFlavResponse = await fetch('https://aearial.github.io/my-app/items/ItemFlav.csv');
         const itemFlavText = await itemFlavResponse.text();
         const itemFlavData = Papa.parse(itemFlavText, { header: false }).data;
 
@@ -27,7 +27,7 @@ const ProductList = ({ addToCart }) => {
           id: index + 1,
           name: row[1],  // ITEMx_NAME
           description: itemFlavData[index] ? itemFlavData[index][1] : '説明なし',  // ITEMx_FLAV
-          image: `/items/${index + 1}.png`,  // 商品画像のパス修正
+          image: `https://aearial.github.io/my-app/items/${index + 1}.png`,  // 商品画像のパス修正
           price: 3,
         }));
 

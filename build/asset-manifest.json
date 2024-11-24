@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/AEARIAL/my-app/static/css/main.151158f7.css",
-    "main.js": "/AEARIAL/my-app/static/js/main.1eb6e21b.js",
-    "static/js/453.ed3810f9.chunk.js": "/AEARIAL/my-app/static/js/453.ed3810f9.chunk.js",
-    "index.html": "/AEARIAL/my-app/index.html",
-    "main.151158f7.css.map": "/AEARIAL/my-app/static/css/main.151158f7.css.map",
-    "main.1eb6e21b.js.map": "/AEARIAL/my-app/static/js/main.1eb6e21b.js.map",
-    "453.ed3810f9.chunk.js.map": "/AEARIAL/my-app/static/js/453.ed3810f9.chunk.js.map"
+    "main.css": "/my-app/static/css/main.151158f7.css",
+    "main.js": "/my-app/static/js/main.03218150.js",
+    "static/js/453.ed3810f9.chunk.js": "/my-app/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/my-app/index.html",
+    "main.151158f7.css.map": "/my-app/static/css/main.151158f7.css.map",
+    "main.03218150.js.map": "/my-app/static/js/main.03218150.js.map",
+    "453.ed3810f9.chunk.js.map": "/my-app/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.151158f7.css",
-    "static/js/main.1eb6e21b.js"
+    "static/js/main.03218150.js"
   ]
 }

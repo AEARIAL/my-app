@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import './Cart.css';  // カートのスタイルを追加
+import './Cart.css'; // カートのスタイルを追加
 
-const Cart = ({ cartItems }) => {
+const Cart = ({ cartItems, setCartItems }) => {
   const [showPopup, setShowPopup] = useState(false); // ポップアップの表示状態
   const [selectedItem, setSelectedItem] = useState(null); // 選択されたアイテム
 
   // 合計金額の計算
-  const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+  const totalAmount = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
 
   const handleItemClick = (item) => {
     setSelectedItem(item); // アイテムを選択
@@ -15,6 +18,12 @@ const Cart = ({ cartItems }) => {
 
   const handleClosePopup = () => {
     setShowPopup(false); // ポップアップを閉じる
+  };
+
+  const handleRemoveItem = (itemId) => {
+    // 指定されたIDの商品を削除
+    const updatedCartItems = cartItems.filter((item) => item.id !== itemId);
+    setCartItems(updatedCartItems); // カートアイテムを更新
   };
 
   return (
@@ -48,6 +57,17 @@ const Cart = ({ cartItems }) => {
                 <div className="cart-item-subtotal">
                   小計: {item.price * item.quantity}
                 </div>
+
+                {/* 削除ボタン */}
+                <button
+                  className="remove-button"
+                  onClick={(e) => {
+                    e.stopPropagation(); // 親のクリックイベントを防止
+                    handleRemoveItem(item.id);
+                  }}
+                >
+                  削除
+                </button>
               </li>
             ))}
           </ul>
@@ -62,11 +82,15 @@ const Cart = ({ cartItems }) => {
       {/* ポップアップ */}
       {showPopup && selectedItem && (
         <div className="popup-overlay" onClick={handleClosePopup}>
-          <div className="popup">
+          <div className="popup" onClick={(e) => e.stopPropagation()}>
             <h3>{selectedItem.name}</h3>
             <p>{selectedItem.description}</p>
-            <p><strong>Cost:</strong> {selectedItem.price}</p>
-            <button className="close-button" onClick={handleClosePopup}>閉じる</button>
+            <p>
+              <strong>Cost:</strong> {selectedItem.price}
+            </p>
+            <button className="close-button" onClick={handleClosePopup}>
+              閉じる
+            </button>
           </div>
         </div>
       )}

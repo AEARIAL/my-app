@@ -12,11 +12,11 @@ const EditProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const itemNameResponse = await fetch('/items/ItemName.csv');
+        const itemNameResponse = await fetch('https://aearial.github.io/my-app/items/ItemName.csv');
         const itemNameText = await itemNameResponse.text();
         const itemNameData = Papa.parse(itemNameText, { header: false }).data;
 
-        const itemFlavResponse = await fetch('/items/ItemFlav.csv');
+        const itemFlavResponse = await fetch('https://aearial.github.io/my-app/items/ItemFlav.csv');
         const itemFlavText = await itemFlavResponse.text();
         const itemFlavData = Papa.parse(itemFlavText, { header: false }).data;
 
@@ -25,7 +25,7 @@ const EditProducts = () => {
           name: row[1],
           description: itemFlavData[index] ? itemFlavData[index][1] : '説明なし',
           price: 3, // 仮の価格
-          image: `/items/${index + 1}.png`, // 仮の画像URL
+          image: `https://aearial.github.io/my-app/items/${index + 1}.png`, // 仮の画像URL
         }));
 
         setProducts(parsedProducts);
