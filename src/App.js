@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProductList from './ProductList';
 import Cart from './Cart';
-import EditProducts from './EditProducts'; // 新しい編集画面のインポート
+import EditProducts from './EditProducts';
 import './App.css';
 
 const App = () => {
@@ -24,7 +24,6 @@ const App = () => {
 
   return (
     <div>
-      {/* タブメニュー */}
       <div className="tab-menu">
         <button
           className={activeTab === 'products' ? 'active-tab' : ''}
@@ -39,21 +38,19 @@ const App = () => {
           カート
         </button>
         <button
-          className={activeTab === 'edit' ? 'active-tab' : ''}  // 編集タブを追加
+          className={activeTab === 'edit' ? 'active-tab' : ''}
           onClick={() => setActiveTab('edit')}
         >
           編集
         </button>
       </div>
 
-      {/* タブ内容 */}
       <div className="tab-content">
-        {activeTab === 'products' && <ProductList addToCart={addToCart} />}
-        {activeTab === 'cart' && <Cart cartItems={cartItems}  setCartItems={setCartItems} />}
-        {activeTab === 'edit' && <EditProducts />}  {/* 編集画面を表示 */}
+        {activeTab === 'products' && <ProductList addToCart={addToCart} activeTab={activeTab} />}
+        {activeTab === 'cart' && <Cart cartItems={cartItems} setCartItems={setCartItems} />}
+        {activeTab === 'edit' && <EditProducts />}
       </div>
     </div>
-    
   );
 };
 

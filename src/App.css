@@ -34,3 +34,61 @@
 .tab-menu button:focus {
   outline: none;  /* フォーカス時のアウトラインを削除 */
 }
+
+/* スライドスイッチの全体コンテナ */
+.toggle-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+/* スライドスイッチの本体 */
+.toggle-switch {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* スイッチがONの場合の背景色 */
+.toggle-switch.on {
+  background-color: #4caf50; /* 緑色 */
+}
+
+/* スイッチのスライダー */
+.toggle-slider {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.3s ease;
+}
+
+/* スライダーがONの時の位置 */
+.toggle-slider.on {
+  transform: translateX(30px);
+}
+
+/* スライダーがOFFの時の位置 */
+.toggle-slider.off {
+  transform: translateX(0);
+}
+
+/* テキスト表示 */
+.toggle-text {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #4caf50; /* ON時の緑色にする */
+}
+
+.toggle-text.off {
+  color: #ccc; /* OFF時は灰色 */
+}
